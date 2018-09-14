@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body{
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      color: white;
+      overflow: hidden;
+    }
+    .line {
+      border-radius: 1px;
+      height: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+    #background {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('https://cdn.pixabay.com/photo/2018/01/11/19/02/architecture-3076685_960_720.jpg');
+      background-size: cover;
+      position: absolute;
+      filter: brightness(0.4);
+      z-index: 0;
+      pointer-events: none;
+    }
+    #heading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    #heading:hover {
+      opacity: 0.5;
+    }
+    #heading>p {
+      font-family: fantasy;
+      font-size: 100px;
+      pointer-events: none;
+      margin: 0;
+      padding: 0;
+    }
+    #heading>#greeting {
+      font-family: cursive;
+      font-size: 40px;
+    }
+    #menu-button {
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid white;
+      background-color: rgba(255, 255, 255, 0);
+      position: absolute;
+      z-index: 2;
+      height: 32px;
+      width: 32px;
+      transition: all 1s ease;
+      right: 5%;
+      top: 5%;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+    }
+    #menu-button>.line {
+      width: 20px;
+      margin-top: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      transition: all 1s ease;
+      border: 1px white solid;
+    }
+    #menu-button>#first.line {
+      margin-top: 0px;
+    }
+    #menu-button:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+    #menu-button:hover>.line {
+      border: 1px black solid;
+    }
+    #menu-button.acting {
+      border-color: transparent;
+      right: 250px;
+      transform: translateX(50px);
+    }
+    #menu-button.acting>#first.line {
+      transform: rotate(40deg);
+    }
+    #menu-button.acting>#second.line {
+      transform: translateX(-2px);
+    }
+    #menu-button.acting>#third.line {
+      transform: rotate(-40deg);
+    }
+    #menu {
+      height: 100%;
+      width: 250px;
+      position: absolute;
+      z-index: 1;
+      border-left: 1px transparent solid;
+      background-color: transparent;
+      right: -250px;
+      transition: all 1s ease;
+    }
+    #menu.acting {
+      right: 0;
+      border-left: 1px white solid;
+      padding: 0;
+      margin: 0;
+    }
+    #menu>h1 {
+      font-size: 32px;
+      font-family: sans-serif;
+      font-weight: lighter;
+      align: right;
+      position: absolute;
+      top: 4.1%;
+      left: 60px;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+    }
+    #menu>.line {
+      position:absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, 40px);
+      width: 220px;
+      border: 0.5px white solid;
+    }
+    #menu>#items {
+      position:absolute;
+      top: 6%;
+      transform: translate(70px, 42px);
+      width: 100%;
+      padding: 0;
+    }
+    #menu>#items>a {
+      text-decoration: none;
+      font-size: 20px;
+      font-family: sans-serif;
+      font-weight: lighter;
+      transition: all 0.5s ease;
+      margin: 0;
+      padding: 0;
+      color: white;
+    }
+    #menu>#items>a:hover, #menu>#items>a:hover:visited {
+      background-color: white;
+      color: black;
+    }
+  </style>
+  <title>Skida is here!</title>
+</head>
+<body>
+  <div id="background"></div>
+  <div id="heading">
+    <p>Skida is here!</p>
+    <p id="greeting">Hello, world</p>
+  </div>
+  <button id="menu-button">
+    <div id="first" class="line"></div>
+    <div id="second" class="line"></div>
+    <div id="third" class="line"></div>
+  </button>
+  <div id="menu">
+    <h1>Homework</h1>
+    <div class="line"></div>
+    <div id="items">
+      <a href="./pie.html">Recipe</a>
+    </div>
+  </table>
+  <script>
+    let rebackId = -1;
+    let menuActive = false;
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        document.title = "Skida runs away!";
+        if (rebackId >= 0) window.clearTimeout(rebackId);
+      } else {
+        document.title = "Skida is running back...";
+        rebackId = window.setTimeout(() => {
+          document.title = "Skida is here!";
+        }, 1000);
+      }
+    });
+    document.getElementById("menu-button").onclick = () => {
+      if (!menuActive) {
+        document.getElementById("menu-button").classList.add("acting");
+        document.getElementById("menu").classList.add("acting");
+        menuActive = true;
+      } else {
+        document.getElementById("menu-button").classList.remove("acting");
+        document.getElementById("menu").classList.remove("acting");
+        menuActive = false;
+      }
+    }
+  </script>
+</body>
+</html>
