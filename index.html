@@ -202,6 +202,17 @@
     let rebackId = -1;
     let menuActive = false;
     let greetingIndex = 0;
+    const changeTitle = () => {
+      if (document.hidden) {
+        document.title = "(/≧▽≦)/Skida runs away!";
+        if (rebackId >= 0) window.clearTimeout(rebackId);
+      } else {
+        document.title = "Skida is running back...";
+        rebackId = window.setTimeout(() => {
+          document.title = "Skida is here!";
+        }, 1000);
+      }
+    };
     let greetings = [
       () =>
         document.getElementById("greeting").innerText =
@@ -233,19 +244,11 @@
       () => {
         document.getElementById("greeting").innerText = 'Goodbye!';
         document.body.removeChild(document.getElementById("heading"));
+        document.title = "(/≧▽≦)/Skida runs away!";
+        document.removeEventListener("visibilitychange", changeTitle);
       }
     ];
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        document.title = "(/≧▽≦)/Skida runs away!";
-        if (rebackId >= 0) window.clearTimeout(rebackId);
-      } else {
-        document.title = "Skida is running back...";
-        rebackId = window.setTimeout(() => {
-          document.title = "Skida is here!";
-        }, 1000);
-      }
-    });
+    document.addEventListener("visibilitychange", changeTitle);
     document.getElementById("heading").onclick = () =>
       greetings[++greetingIndex]();
     document.getElementById("menu-button").onclick = () => {
