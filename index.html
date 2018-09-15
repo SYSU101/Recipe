@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./assets/index.css" />
+  <link rel="stylesheet" href="./index.css" />
   <title>Skida is here!</title>
 </head>
 <body>
@@ -83,7 +83,7 @@
     ];
     document.getElementById("recall").onclick = () => {
       document.getElementById("recall").innerText = "Recalling Skida.";
-      document.getElementById("recall").style["pointer-event"] = "none";
+      document.getElementById("recall").style["pointer-events"] = "none";
       document.getElementById("recall").style["cursor"] = "progress";
       let hwnd = window.setInterval(() => {
         let text = document.getElementById("recall").innerText;
@@ -92,7 +92,7 @@
       }, 500);
       window.setTimeout(() => {
         let possible = Math.random();
-        if (possible > 0.7) {
+        if (possible > 0.55) {
           changeTitle();
           document.addEventListener("visibilitychange", changeTitle);
           document.getElementById("calling").innerText = "(/≧▽≦)/Skida decide to come back!";
@@ -104,7 +104,7 @@
             document.getElementById("status").style["display"] = "none";
             document.getElementById("recall").innerText = "Recall Skida";
             document.getElementById("calling").innerText = "Skida disapeared, angrily.";
-            document.getElementById("recall").style["pointer-event"] = "all";
+            document.getElementById("recall").style["pointer-events"] = "all";
             document.getElementById("recall").style["cursor"] = "pointer";
           }, 2000);
         } else {
@@ -113,7 +113,7 @@
             window.clearTimeout(hwnd);
             document.getElementById("recall").innerText = "Recall Skida";
             document.getElementById("calling").innerText = "Skida disapeared, angrily.";
-            document.getElementById("recall").style["pointer-event"] = "all";
+            document.getElementById("recall").style["pointer-events"] = "all";
             document.getElementById("recall").style["cursor"] = "pointer";
           }, 2000);
         }
