@@ -27,12 +27,11 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      background-image: url('https://cdn.pixabay.com/photo/2018/01/11/19/02/architecture-3076685_960_720.jpg');
+      background-image: url('./assets/background.jpg');
       background-size: cover;
       position: absolute;
       filter: brightness(0.4);
       z-index: 0;
-      pointer-events: none;
     }
     #heading {
       position: absolute;
@@ -54,6 +53,21 @@
     #heading>#greeting {
       font-family: cursive;
       font-size: 40px;
+    }
+    #button-title {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+      font-size: 20px;
+      right: 5%;
+      top: 5%;
+      transform: translate(-40px, 3px);
+      z-index: 2;
+      transition: all 0.5s ease;
+    }
+    #button-title.acting {
+      opacity: 0;
     }
     #menu-button {
       outline: none;
@@ -124,11 +138,12 @@
       font-weight: lighter;
       align: right;
       position: absolute;
-      top: 4.1%;
+      top: 5%;
       left: 60px;
       margin: 0;
       padding: 0;
       pointer-events: none;
+      transform: translateY(-6px);
     }
     #menu>.line {
       position:absolute;
@@ -168,6 +183,9 @@
     <p>Skida is here!</p>
     <p id="greeting">Hello, world</p>
   </div>
+  <span id="button-title">
+    HOMEWORK
+  </span>
   <button id="menu-button">
     <div id="first" class="line"></div>
     <div id="second" class="line"></div>
@@ -185,7 +203,7 @@
     let menuActive = false;
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
-        document.title = "Skida runs away!";
+        document.title = "(/≧▽≦)/Skida runs away!";
         if (rebackId >= 0) window.clearTimeout(rebackId);
       } else {
         document.title = "Skida is running back...";
@@ -198,10 +216,12 @@
       if (!menuActive) {
         document.getElementById("menu-button").classList.add("acting");
         document.getElementById("menu").classList.add("acting");
+        document.getElementById("button-title").classList.add("acting");
         menuActive = true;
       } else {
         document.getElementById("menu-button").classList.remove("acting");
         document.getElementById("menu").classList.remove("acting");
+        document.getElementById("button-title").classList.remove("acting");
         menuActive = false;
       }
     }
