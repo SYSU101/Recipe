@@ -46,9 +46,9 @@
     #heading>p {
       font-family: fantasy;
       font-size: 100px;
-      pointer-events: none;
       margin: 0;
       padding: 0;
+      user-select: none;
     }
     #heading>#greeting {
       font-family: cursive;
@@ -181,7 +181,7 @@
   <div id="background"></div>
   <div id="heading">
     <p>Skida is here!</p>
-    <p id="greeting">Hello, world</p>
+    <p id="greeting">Hello, world.</p>
   </div>
   <span id="button-title">
     HOMEWORK
@@ -201,6 +201,40 @@
   <script>
     let rebackId = -1;
     let menuActive = false;
+    let greetingIndex = 0;
+    let greetings = [
+      () =>
+        document.getElementById("greeting").innerText =
+          'Hello, world.',
+      () =>
+        document.getElementById("greeting").innerText =
+          'How are you?',
+      () =>
+        document.getElementById("greeting").innerText =
+          'If you want to look my homework, please click the button next to "HOMEWORK".:)',
+      () =>
+        document.getElementById("greeting").innerText =
+          'Click is cheap, show me the code.',
+      () =>
+        document.getElementById("greeting").innerText =
+          '(￣△￣;)Do you feel boring?',
+      () =>
+        document.getElementById("greeting").innerHTML =
+          'If you are really bored, you can go to <a href="https://github.com/">GitHub</a> and explore the world.',
+      () =>
+        document.getElementById("greeting").innerText =
+          '( ｀д′)Why do you keep click on me?',
+      () =>
+        document.getElementById("greeting").innerText =
+          '(￣皿￣)You shall not click again!',
+      () =>
+        document.getElementById("greeting").innerText =
+          'I will disapear anyway if you click me once more.￣へ￣',
+      () => {
+        document.getElementById("greeting").innerText = 'Goodbye!';
+        document.body.removeChild(document.getElementById("heading"));
+      }
+    ];
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         document.title = "(/≧▽≦)/Skida runs away!";
@@ -212,6 +246,8 @@
         }, 1000);
       }
     });
+    document.getElementById("heading").onclick = () =>
+      greetings[++greetingIndex]();
     document.getElementById("menu-button").onclick = () => {
       if (!menuActive) {
         document.getElementById("menu-button").classList.add("acting");
