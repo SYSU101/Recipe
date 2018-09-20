@@ -24,10 +24,13 @@ h1 {
   font-weight: bold;
 }
 .heading-main>span {
+  color: transparent;
   position: absolute;
   left: 50%;
-  height: 24.7pt;
-  width: 462pt;
+  bottom: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
   transform: translateX(-50%);
   border-bottom-color: #A4A400;
   border-bottom-style: solid;
